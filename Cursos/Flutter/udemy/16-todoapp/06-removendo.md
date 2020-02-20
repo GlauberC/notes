@@ -1,8 +1,10 @@
 ## Conteúdos
+
 - Dismissible
 - Align
 
 ## main.dart
+
 ```dart
 import 'dart:convert';
 import 'dart:io';
@@ -101,7 +103,9 @@ class _HomePageState extends State<HomePage> {
           color: Colors.red,
           child: Align(
               alignment: Alignment(-0.9, 0.0),
-              child: Icon(Icons.delete, color: Colors.white))),
+              child: Icon(Icons.delete, color: Colors.white)
+              )
+            ),
       direction: DismissDirection.startToEnd,
       child: CheckboxListTile(
         title: Text(_toDoList[index]["title"]),
