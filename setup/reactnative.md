@@ -1,13 +1,16 @@
 # editor config
+
 - botão direito para gerar o editor config
 - end_of_line = lf
 - Duas ultimas opções true
 
 # eslint
+
 ```sh
-  yarn add eslint -D
-  yarn eslint --init
+  sudo yarn add eslint -D
+  sudo yarn eslint --init
 ```
+
 - terceira opção
 - javascript modules
 - react
@@ -20,45 +23,50 @@
 ```sh
   yarn
 ```
+
 - .eslintrc.js
+
 ```js
 module.exports = {
   env: {
-    es6: true,
+    es6: true
   },
-  extends: ['airbnb', 'prettier', 'prettier/react'],
+  extends: ["airbnb", "prettier", "prettier/react"],
   globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-    __DEV__: 'readonly',
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly",
+    __DEV__: "readonly"
   },
-  parser: 'babel-eslint',
+  parser: "babel-eslint",
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: "module"
   },
-  plugins: ['react', 'prettier'],
+  plugins: ["react", "prettier"],
   rules: {
-    'prettier/prettier': 'error',
-    'react/jsx-filename-extension': [
-      'warn',
+    "prettier/prettier": "error",
+    "react/jsx-filename-extension": [
+      "warn",
       {
-        extensions: ['.jsx', '.js'],
-      },
+        extensions: [".jsx", ".js"]
+      }
     ],
-    'import/prefer-default-export': 'off',
-  },
+    "import/prefer-default-export": "off"
+  }
 };
 ```
 
 # Pretier
+
 ```sh
   sudo yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint -D
 ```
+
 - pretierrc
+
 ```js
 {
   "singleQuote": true,
@@ -69,21 +77,25 @@ module.exports = {
 # Reactotron
 
 ```sh
-  yarn add reactotron-react-native
+  sudo yarn add reactotron-react-native
 ```
+
 - src/config/ReactotronConfig.js
+
 ```js
-import Reactotron from 'reactotron-react-native';
+import Reactotron from "reactotron-react-native";
 
 if (__DEV__) {
-  const tron = Reactotron.configure({ host: '192.168.0.19' })
+  const tron = Reactotron.configure({ host: "192.168.0.19" })
     .useReactNative()
     .connect();
   console.tron = tron;
   tron.clear();
 }
 ```
+
 - app.js
+
 ```js
   ...
   import './config/ReactotronConfig';
@@ -91,11 +103,15 @@ if (__DEV__) {
 ```
 
 # Configurando o React Hooks
+
 - Plugin eslint
+
 ```sh
-  yarn add eslint-plugin-react-hooks -D
-``` 
+  sudo yarn add eslint-plugin-react-hooks -D
+```
+
 - eslintrc.js
+
 ```js
   ...
   plugins: ["react", "prettier", 'react-hooks'],
