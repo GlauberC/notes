@@ -155,7 +155,7 @@ export default appointmentsRouter;
 declare namespace Express {
   export interface Request {
     user: {
-      id: String;
+      id: string;
     };
   }
 }
