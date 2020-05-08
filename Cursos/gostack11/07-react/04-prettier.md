@@ -59,6 +59,6 @@ module.exports = {
 module.exports = {
   singleQuote: true,
   trailingComma: "all",
-  allowParrens: "avoid"
+  allowParens: "avoid"
 };
 ```
