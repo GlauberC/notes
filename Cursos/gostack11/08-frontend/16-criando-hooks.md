@@ -1,12 +1,11 @@
 ## Conteúdos
-- Salvar dados no localstorage
-- Salvar dados no estado do contexto pora facil acesso
-- Inciar aplicação pegando os dados do localstorage caso eles existam
-- Testando no SignIn
+- trocando no useContext por useAuth
+- criar função useAuth verificando se está sendo executada no AuthProvider
+- importar o useAuth no Login
 
 ## src/hooks/AuthContext.tsx
 ```tsx
-import React, { createContext, useCallback, useState } from 'react';
+import React, { createContext, useCallback, useState, useContext } from 'react';
 
 import api from '../services/api';
 
@@ -24,9 +23,7 @@ interface AuthContextData {
   signIn(credentials: SignInCredentials): Promise<void>;
 }
 
-export const AuthContext = createContext<AuthContextData>(
-  {} as AuthContextData,
-);
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
@@ -57,6 +54,15 @@ export const AuthProvider: React.FC = ({ children }) => {
   );
 };
 
+export function useAuth(): AuthContextData {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+
+  return context;
+}
+
 ```
 ## src/pages/SignIn/index.tsx
 ```tsx
@@ -70,7 +76,7 @@ import * as Yup from 'yup';
 
 import getValidationErros from '../../utils/getValidationErros';
 
-import { AuthContext } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 
 import logoImg from '../../assets/logo.svg';
 
@@ -87,9 +93,7 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { signIn, user } = useContext(AuthContext);
-
-  console.log(user);
+  const { signIn } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
