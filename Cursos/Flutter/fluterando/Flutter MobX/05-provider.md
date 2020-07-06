@@ -1,6 +1,8 @@
 ## Conteúdos
 
 - Separando body
+- Configurando os providers
+- Usando os Providers
 
 ## pubspec.yaml
 
