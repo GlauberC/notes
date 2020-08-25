@@ -20,4 +20,3 @@
 - Estilos dinâmicos (props, themes)
 - Manutenção simplificada e sem dor
 - Vendor prefixing automático
-- 
