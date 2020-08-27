@@ -7,6 +7,8 @@
 - Rename js to ts e tsx
 - Configurando editor config
 - eslint
+- prettier
+- git husky
 
 # Install
  ```
@@ -97,4 +99,85 @@ yarn add eslint-plugin-react-hooks -D
     "lint": "eslint src"
     ...
   },
+```
+
+# prettier
+```
+yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+```
+## .prettierrc
+```json
+{
+  "trailingComma": "none",
+  "semi": false,
+  "singleQuote": true
+}
+
+```
+
+## .eslintrc.json
+```json
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
+}
+
+```
+
+# git husky
+```
+yarn add husky lint-staged -D 
+```
+
+## package.json
+```json
+{
+
+  "scripts": {
+    ...
+    "lint": "eslint src --max-warnings=0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "yarn lint --fix"
+    ]
+  },
+  ...
+}
+
 ```
